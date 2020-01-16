@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebShopApp.Models.Brand>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align:center">BRANDS</h1>
+<p>
+    <a class="btn btn-danger mb-1 " asp-action="Create"><i class="fas fa-user-plus pr-1"></i>Create New</a>
+</p>
+
+<div>
+    <div>
+        <form class="mb-5" asp-action="Nhanviens" method="post">
+            <input type="text" class="form-control w-25 float-left mr-2" id="example5" name="Keyword" value="" />
+            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4">
+                <div class="box-part text-center">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@item.UrlImage" class="card-img-top" alt="" height="150px" width="20px">
+                        <div class="card-body">
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                        </div>
+                    </div>                    
+                    <a asp-action="Edit" asp-route-id="@item.BrandId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BrandId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BrandId"> Delete </a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
